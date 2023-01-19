@@ -28,16 +28,13 @@ void pall(stack_t **stack, unsigned int __attribute__((unused))line_number)
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
-	int value;
-
 	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr,"L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	value = (*stack)->n; /* head node's data */
-	printf("%d\n", value);
+	printf("%d\n", (*stack)->n);
 }
 
 /**
