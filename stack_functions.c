@@ -64,9 +64,9 @@ void pop(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	next = (*stack)->next; /* save next node's address */
+	next = (*stack)->next;
 	free(*stack);
-	*stack = next; /* reassign next node to head */
+	*stack = next;
 }
 
 /**
