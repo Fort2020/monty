@@ -42,5 +42,6 @@ size_t stack_length(stack_t **stack);
 void free_stack(stack_t **stack);
 void free_all(stack_t *stack, char *line, FILE *fp);
 ssize_t getstdin(char **lineptr, int file);
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 
 #endif /* MONTY_H */
