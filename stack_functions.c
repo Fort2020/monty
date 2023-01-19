@@ -12,7 +12,7 @@ void push(stack_t **stack, unsigned int line_number, char *n)
 	stack_t *new_node = NULL;
 	int i;
 
-	if (n == NULL || (n[0] == '-' && !isdigit(n[0])))
+	if (n == NULL || !isdigit(n[0]))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -20,6 +20,8 @@ void push(stack_t **stack, unsigned int line_number, char *n)
 
 	for (i = 1; n[i] != '\0'; i++)
 	{
+		if (n[0] == '-')
+			continue;
 		if (isdigit(n[i]) == 0)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
