@@ -9,43 +9,43 @@
  */
 void push(stack_t **stack, unsigned int line_number, char *n)
 {
-	stack_t *new = NULL;
+	stack_t *new_node = NULL;
 	int i;
 
-	if (n == NULL)
+	if (n == NULL || !isdigit(n[0]))
 	{
-		printf("L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; n[i] != '\0'; i++)
+	for (i = 1; n[i] != '\0'; i++)
 	{
-		if (n[0] == '-' && i == 0)
+		if (n[0] == '-')
 			continue;
 		if (isdigit(n[i]) == 0)
 		{
-			printf("L%d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 	}
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	new->n = atoi(n);
-	new->prev = NULL;
-	new->next = NULL;
+	new_node->n = atoi(n);
+	new_node->prev = NULL;
+	new_node->next = NULL;
 	if (*stack != NULL)
 	{
-		new->next = *stack;
-		(*stack)->prev = new;
+		new_node->next = *stack;
+		(*stack)->prev = new_node;
 	}
 
-	*stack = new;
+	*stack = new_node;
 }
 
 /**
@@ -60,13 +60,13 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	next = (*stack)->next; /* save next node's address */
+	next = (*stack)->next;
 	free(*stack);
-	*stack = next; /* reassign next node to head */
+	*stack = next;
 }
 
 /**
@@ -82,7 +82,7 @@ void swap(stack_t **stack, unsigned int line_number)
 
 	if (stack_length(stack) < 2)
 	{
-		printf("L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
