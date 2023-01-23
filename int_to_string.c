@@ -3,7 +3,7 @@
 char *get_int(int num);
 unsigned int _abs(int);
 int get_numbase_len(unsigned int num, unsigned int base);
-void fill_numbase_buff(unsigned int num, unsigned int base, 
+void fill_numbase_buff(unsigned int num, unsigned int base,
 		char *buff, int buff_size);
 
 /**
@@ -53,7 +53,7 @@ unsigned int _abs(int i)
   * @base: base of number representation used by buffer
   * @base: base of number representation used by buffer
   *
-  * Return: integer containing length of buffer needed (doesn't contain null bt)
+  * Return: integer that has length of buffer needed (doesn't contain null bt)
 */
 int get_numbase_len(unsigned int num, unsigned int base)
 {
@@ -93,4 +93,3 @@ void fill_numbase_buff(unsigned int num, unsigned int base,
 		i--;
 	}
 }
-    
